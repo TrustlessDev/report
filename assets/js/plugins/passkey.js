@@ -6,14 +6,20 @@ async function registerPasskey() {
     });
     const options = await response.json();
 
-    // 確保 challenge 被轉換為 Uint8Array 格式
-    options.challenge = Uint8Array.from(atob(options.challenge), c => c.charCodeAt(0));
-    options.user.id = Uint8Array.from(atob(options.user.id), c => c.charCodeAt(0));
+    try {
+        // 確保 challenge 被轉換為 Uint8Array 格式
+        options.challenge = Uint8Array.from(atob(options.challenge), c => c.charCodeAt(0));
+        options.user.id = Uint8Array.from(atob(options.user.id), c => c.charCodeAt(0));
+    } catch (e) {
+        console.error('Invalid Base64 string:', e);
+        alert('無效的 Base64 字串，請檢查伺服器回應。');
+        return;
+    }
 
     // 執行 WebAuthn 註冊
     const credential = await navigator.credentials.create({
         username: 'ksbcboy',
-        publicKey: options,
+        publicKey: options
     });
 
     // 將結果發送到後端
