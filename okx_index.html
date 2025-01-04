@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歐易數字貨幣交易所</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background-color: #111;
+            padding: 1rem;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .register-btn {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .email-form input {
+            border-radius: 5px;
+        }
+
+        /* App Banner */
+        .app-banner {
+            background-color: #f5f5f5;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 2rem auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .app-banner .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .app-banner .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .app-banner .content {
+            flex: 1;
+        }
+        .app-banner .content p {
+            margin: 0;
+        }
+        .app-banner .content .title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .app-banner .content .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .app-banner .btn-download {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 0.3rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .app-banner .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1rem;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="logo"><img height="36" src="logo.png"/></div>
+        <button class="register-btn">註冊</button>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>歐易數字貨幣交易所</h1>
+            <p class="mb-4">更快、更好、更強</p>
+            <form class="email-form d-flex justify-content-center">
+                <input type="email" class="form-control w-50 me-2" placeholder="郵箱" required>
+                <button type="submit" class="btn btn-light">立即體驗</button>
+            </form>
+        </section>
+
+        <!-- App Banner Section -->
+        <section class="app-banner">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50?text=Logo" alt="Logo">
+                <div class="content">
+                    <p class="title">歐易 OKX APP</p>
+                    <p class="subtitle">移動交易，隨時隨地</p>
+                </div>
+            </div>
+            <button class="btn-download">下載</button>
+            <button class="close-btn">&times;</button>
+        </section>
+    </main>
+
+    <!-- 引入 Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 關閉 App Banner
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.querySelector('.app-banner').style.display = 'none';
+        });
+
+        // 下載 App
+        document.querySelector('.btn-download').addEventListener('click', function() {
+            location.href = 'https://www.okx.com/download';
+        });
+    </script>
+</body>
+</html>

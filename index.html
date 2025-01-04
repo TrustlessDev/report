@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo.png"
+      type="image/x-icon"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="./assets/css/swiper.min.css" />
+    <title>Chain Master HTML PWA Template</title>
+  <link href="style.css" rel="stylesheet"></head>
+  <body>
+    <div class="fixed inset-0 z-20 splashModal">
+      <div
+        class="container bg-n900 h-dvh relative overflow-hidden flex justify-center items-center text-white"
+      >
+        <div
+          class="w-[582px] h-[582px] rounded-full bg-g300 absolute -top-24 -left-20 blur-[575px]"
+        ></div>
+
+        <div
+          class="size-[105px] rounded-full bg-white opacity-5 top-40 -left-14 absolute"
+        ></div>
+        <div
+          class="size-[105px] rounded-full bg-white opacity-5 top-20 -right-14 absolute"
+        ></div>
+
+        <div
+          class="size-[105px] rounded-full bg-white opacity-5 bottom-10 -left-14 absolute"
+        ></div>
+        <div
+          class="size-[105px] rounded-full bg-white opacity-5 bottom-40 -right-14 absolute"
+        ></div>
+
+        <div class="flex flex-col justify-center items-center gap-4">
+          <img src="./assets/images/logo.png" alt="" />
+          <p class="text-3xl font-bold">
+            Chain <span class="text-g300">Master</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container bg-n900 h-dvh relative overflow-hidden flex justify-center items-center text-white"
+    >
+      <div
+        class="w-[582px] h-[582px] rounded-full bg-g300 absolute -top-32 -left-20 blur-[575px]"
+      ></div>
+      <div class="swiper onboarding-steps-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="p-6 relative z-20">
+              <img src="./assets/images/onboarding-slider-img-1.png" alt="" />
+              <div class="pt-8">
+                <p class="text-3xl font-bold">
+                  運用
+                  <span class="text-g300">策略</span>，創造被動收入！
+                </p>
+                <p class="text-n70 text-sm pt-5">
+                  基於智能合約的創新投資遊戲，透明、公平、無盡可能。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="p-6 relative z-20">
+              <img src="./assets/images/onboarding-slider-img-2.png" alt="" />
+              <div class="pt-8">
+                <p class="text-3xl font-bold">
+                  遊戲
+                  <span class="text-g300">規則透明</span>，機會觸手可及！
+                </p>
+                <p class="text-n70 text-sm pt-5">
+                  <ul>
+                    <li>	1.	高回報：合約資金30日鎖定期，到期即返 108% 本金與利息！</li>
+                      <li>2.	智動出金：每日 00:00 按時返還當日所有已到期合約，規則公開透明。</li>
+                      <li>3.	推薦獎金：邀請好友參與，立享額外 5% 推薦獎勵！</li>
+                      <li>4.	安全與公正：基於智能合約，資金流動可追蹤，完全去中心化。</li>
+                      <li>5.  數據透明：平台預設提供詳盡數據分析，風險評比。</li>
+                    </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="p-6 relative z-20">
+              <img src="./assets/images/onboarding-slider-img-3.png" alt="" />
+              <div class="pt-8">
+                <p class="text-3xl font-bold">
+                  立即啟動你的
+                  <span class="text-g300">財富增長</span> 之旅！
+                </p>
+                <p class="text-n70 text-sm pt-5">
+                  點擊下方按鈕，成為我們的一員，打造自己的收益曲線！
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between items-center w-full px-6">
+          <div class="swiper-pagination onBoardingsliderPagingation"></div>
+          <div class="nextButton">
+            <div class="ara-next">
+              <button
+                class="text-white flex justify-center items-center bg-g300 rounded-full text-2xl p-4">
+                <i class="ph ph-caret-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ==== js dependencies start ==== -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/plugins/plugins.js"></script>
+    <script src="./assets/js/plugins/plugin-custom.js"></script>
+    <script src="./assets/js/plugins/passkey.js"></script>
+  <script defer src="index.js"></script></body>
+</html>

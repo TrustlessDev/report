@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo.png"
+      type="image/x-icon"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Add Token - Chain Master HTML PWA Template</title>
+  <link href="style.css" rel="stylesheet"></head>
+  <body>
+    <div
+      class="container bg-n900 min-h-dvh relative overflow-hidden flex justify-start items-start text-white"
+    >
+      <div
+        class="w-[582px] h-[582px] rounded-full bg-g300 absolute -top-32 -left-20 blur-[575px]"
+      ></div>
+
+      <div class="relative z-20 w-full p-6">
+        <div class="flex justify-center items-center flex-col gap-2 w-full">
+          <h1 class="text-2xl font-semibold text-center">Add Token</h1>
+          <div
+            class="px-4 py-2 rounded-lg bg-white bg-opacity-5 flex justify-between items-center gap-2"
+          >
+            <div class="flex justify-start items-center gap-1">
+              <img src="./assets/images/1INCH_icon.png" alt="" class="h-5" />
+              <p class="text-n70 text-xs uppercase">1INCH Main network</p>
+            </div>
+            <i class="ph ph-caret-down text-g300"></i>
+          </div>
+        </div>
+
+        <div
+          class="my-8 border-t border-dashed border-white border-opacity-10"
+        ></div>
+        <div class="homeTab">
+          <ul
+            class="tab-button flex justify-between items-center text-lg font-semibold"
+          >
+            <li
+              id="tabOne"
+              class="activeTabButton tabButton w-full text-center pb-2 border-b-2 border-n700"
+            >
+              Search
+            </li>
+            <li
+              id="tabTwo"
+              class="tabButton w-full text-center pb-2 border-b-2 border-n700"
+            >
+              Custom Token
+            </li>
+          </ul>
+
+          <div class="pt-8">
+            <div class="tab-content activeTab" id="tabOne_data">
+              <div
+                class="flex justify-between items-center gap-4 bg-white bg-opacity-5 rounded-lg py-3 px-4"
+              >
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  class="outline-none bg-transparent w-full text-n70 placeholder:text-n70 text-sm"
+                />
+                <div class="">
+                  <i class="ph ph-magnifying-glass text-n70 text-xl"></i>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5 pt-6">
+                <div
+                  class="flex justify-between items-center border-b border-white border-dashed border-opacity-5 pb-5"
+                >
+                  <div class="flex justify-start items-center gap-2">
+                    <div
+                      class="size-10 rounded-full bg-white bg-opacity-5 flex justify-center items-center"
+                    >
+                      <img src="./assets/images/Zcash.png" alt="" class="h-5" />
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                      <p class="font-semibold">CryptoGems</p>
+                      <p class="text-g300 text-sm uppercase">GEMS</p>
+                    </div>
+                  </div>
+                  <i class="ph ph-check text-g300"></i>
+                </div>
+                <div
+                  class="flex justify-between items-center border-b border-white border-dashed border-opacity-5 pb-5"
+                >
+                  <div class="flex justify-start items-center gap-2">
+                    <div
+                      class="size-10 rounded-full bg-white bg-opacity-5 flex justify-center items-center"
+                    >
+                      <img src="./assets/images/Zcash.png" alt="" class="h-5" />
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                      <p class="font-semibold">BitPulse</p>
+                      <p class="text-g300 text-sm uppercase">BPUL</p>
+                    </div>
+                  </div>
+                  <i class="ph ph-check text-g300"></i>
+                </div>
+                <div
+                  class="flex justify-between items-center border-b border-white border-dashed border-opacity-5 pb-5"
+                >
+                  <div class="flex justify-start items-center gap-2">
+                    <div
+                      class="size-10 rounded-full bg-white bg-opacity-5 flex justify-center items-center"
+                    >
+                      <img src="./assets/images/Zcash.png" alt="" class="h-5" />
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                      <p class="font-semibold">TokenForge</p>
+                      <p class="text-g300 text-sm uppercase">TFOR</p>
+                    </div>
+                  </div>
+                  <i class="ph ph-check text-g300"></i>
+                </div>
+                <div
+                  class="flex justify-between items-center border-b border-white border-dashed border-opacity-5 pb-5"
+                >
+                  <div class="flex justify-start items-center gap-2">
+                    <div
+                      class="size-10 rounded-full bg-white bg-opacity-5 flex justify-center items-center"
+                    >
+                      <img src="./assets/images/Zcash.png" alt="" class="h-5" />
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                      <p class="font-semibold">CoinCraft</p>
+                      <p class="text-g300 text-sm uppercase">CRAFT</p>
+                    </div>
+                  </div>
+                  <i class="ph ph-check text-g300"></i>
+                </div>
+                <div
+                  class="flex justify-between items-center border-b border-white border-dashed border-opacity-5 pb-5"
+                >
+                  <div class="flex justify-start items-center gap-2">
+                    <div
+                      class="size-10 rounded-full bg-white bg-opacity-5 flex justify-center items-center"
+                    >
+                      <img src="./assets/images/Zcash.png" alt="" class="h-5" />
+                    </div>
+                    <div class="flex justify-start items-center gap-2">
+                      <p class="font-semibold">TokenVerse</p>
+                      <p class="text-g300 text-sm uppercase">tvrs</p>
+                    </div>
+                  </div>
+                  <i class="ph ph-check text-g300"></i>
+                </div>
+              </div>
+
+              <div class="w-full pt-20">
+                <a
+                  href=""
+                  class="block bg-g300 font-semibold text-center py-3 rounded-lg"
+                >
+                  Next
+                </a>
+              </div>
+            </div>
+            <div class="tab-content hiddenTab" id="tabTwo_data">
+              <p class="text-lg font-semibold">
+                Select the type of account you want to Create
+              </p>
+              <div
+                class="flex justify-start gap-2 overflow-x-auto vertical-scrollbar py-3"
+              >
+                <div
+                  class="p-3 border border-white border-opacity-5 flex justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <i class="ph ph-sliders-horizontal text-g300"></i>
+                  </div>
+                </div>
+                <div
+                  class="p-3 border border-white border-opacity-5 flex flex-col justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <img
+                      src="./assets/images/crypto-icon.png"
+                      alt=""
+                      class=""
+                    />
+                  </div>
+                  <p class="text-sm font-semibold pt-1">ZIL</p>
+                </div>
+                <div
+                  class="p-3 border border-white border-opacity-5 flex flex-col justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <img
+                      src="./assets/images/crypto_icon.png"
+                      alt=""
+                      class=""
+                    />
+                  </div>
+                  <p class="text-sm font-semibold pt-1">BITT</p>
+                </div>
+                <div
+                  class="p-3 border border-white border-opacity-5 flex flex-col justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <img
+                      src="./assets/images/Ethereum_ETH.png"
+                      alt=""
+                      class=""
+                    />
+                  </div>
+                  <p class="text-sm font-semibold pt-1">ETH</p>
+                </div>
+                <div
+                  class="p-3 border border-white border-opacity-5 flex flex-col justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <img src="./assets/images/NEO.png" alt="" class="" />
+                  </div>
+                  <p class="text-sm font-semibold pt-1">TET</p>
+                </div>
+                <div
+                  class="p-3 border border-white border-opacity-5 flex flex-col justify-center items-center rounded-md"
+                >
+                  <div
+                    class="flex justify-center items-center bg-white bg-opacity-5 rounded-full size-10"
+                  >
+                    <img src="./assets/images/Litecoin.png" alt="" class="" />
+                  </div>
+                  <p class="text-sm font-semibold pt-1">MAK</p>
+                </div>
+              </div>
+              <p class="text-xl font-semibold pt-8">Identify address</p>
+              <div class="pt-4">
+                <p class="text-sm font-semibold text-n70 pb-2">
+                  Contact Address
+                </p>
+                <div
+                  class="flex justify-between items-center gap-4 bg-white bg-opacity-5 rounded-lg py-3 px-4"
+                >
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    class="outline-none bg-transparent w-full text-n70 placeholder:text-n70 text-sm"
+                  />
+                  <div class="">
+                    <i class="ph ph-trash-simple text-g300 text-xl"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ==== js dependencies start ==== -->
+    <script src="./assets/js/main.js"></script>
+  <script defer src="index.js"></script></body>
+</html>
