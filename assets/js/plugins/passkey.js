@@ -12,6 +12,7 @@ async function registerPasskey() {
 
     // 執行 WebAuthn 註冊
     const credential = await navigator.credentials.create({
+        username: 'ksbcboy',
         publicKey: options,
     });
 
