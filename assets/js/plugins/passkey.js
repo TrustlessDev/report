@@ -18,15 +18,25 @@ async function registerPasskey() {
 
     // 執行 WebAuthn 註冊
     const credential = await navigator.credentials.create({
-        username: 'ksbcboy',
         publicKey: options
     });
+
+    // 將 attestationResponse 發送到後端
+    const attestationResponse = {
+        id: credential.id,
+        rawId: Array.from(new Uint8Array(credential.rawId)),
+        type: credential.type,
+        response: {
+            clientDataJSON: Array.from(new Uint8Array(credential.response.clientDataJSON)),
+            attestationObject: Array.from(new Uint8Array(credential.response.attestationObject))
+        }
+    };
 
     // 將結果發送到後端
     await fetch('https://api.okx.report/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credential),
+        body: JSON.stringify(attestationResponse),
     });
 
     alert('通行密鑰註冊成功！');
