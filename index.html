@@ -196,15 +196,15 @@
             const provider = await EthereumProvider.init({
                 projectId: projectId,
                 requiredNamespaces: {
-                eip155: { // ✅ 這裡應該使用 "requiredNamespaces" 來設定命名空間
-                    chains: ["eip155:1"], // ✅ 以太坊主網 (Ethereum Mainnet)
-                    methods: ["eth_sendTransaction", "personal_sign", "eth_signTypedData"], // ✅ 支援的方法
-                    events: ["accountsChanged", "chainChanged"], // ✅ 監聽的事件
-                },
+                    tron: {  // ✅ 改為 TRON 命名空間
+                        chains: ["tron:1"],  // ✅ TRON 主網
+                        methods: ["tron_signMessage", "tron_sendTransaction"],  // ✅ TRON 支援的操作
+                        events: ["accountsChanged", "chainChanged"],  // ✅ 監聽的事件
+                    },
                 },
                 rpcMap: {
-                    "1": "https://mainnet.infura.io/v3/1bf59da754374f7c98b1cf4593890f2b", // ✅ 以太坊主網 RPC
-                    "137": "https://polygon-rpc.com/", // ✅ Polygon 主網 RPC
+                    "1": "https://api.trongrid.io",  // ✅ TRON 主網 RPC
+                    "2": "https://nile.trongrid.io", // ✅ TRON 測試網 (Nile Testnet)
                 },
             });
 
