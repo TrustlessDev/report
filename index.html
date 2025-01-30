@@ -184,8 +184,10 @@
             location.href = 'https://apps.apple.com/us/app/okx-buy-bitcoin-btc-crypto/id1327268470d';
         });
 
-        document.getElementById("connectWallet").addEventListener("click", initWalletConnect);
-        document.getElementById("sendTransaction").addEventListener("click", sendTronTransaction);
+        // 連線錢包
+        document.querySelector('.btn-download').addEventListener('click', function() {
+            initWalletConnect();
+        });
 
         async function initWalletConnect() {
             console.log("Hello");
