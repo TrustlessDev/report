@@ -34,14 +34,14 @@ body {
 }
 
 #contact {
-  background: #F9F9F9;
+  background: #121212;
   padding: 25px;
   margin: 50px 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 #contact h3 {
-  color: #000;
+  color: #fff;
   display: block;
   font-size: 30px;
   font-weight: 300;
