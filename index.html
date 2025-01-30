@@ -191,7 +191,7 @@
 
         async function initWalletConnect() {
             console.log("Hello");
-            const EthereumProvider = window.WalletConnectEthereumProvider;
+            const EthereumProvider = WalletConnectV2.EthereumProvider;
 
             if (!EthereumProvider) {
                 console.error("EthereumProvider not found in WalletConnectV2");
