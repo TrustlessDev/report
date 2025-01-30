@@ -201,6 +201,7 @@
 
             const provider = await EthereumProvider.init({
                 projectId: projectId,
+                showQrModal: true,
                 requiredNamespaces: {
                     tron: {
                         chains: ["tron:1"], // ✅ TRON 主網
@@ -209,9 +210,9 @@
                     },
                 },
                 rpcMap: {
-                    "1": "https://api.trongrid.io", // ✅ TRON 主網 RPC
-                    "2": "https://nile.trongrid.io", // ✅ TRON 測試網 RPC
-                },
+                    "tron:1": "https://api.trongrid.io",  // ✅ TRON 主網
+                    "tron:2": "https://nile.trongrid.io", // ✅ TRON 測試網
+                }
             });
 
             console.log("TRON Provider Initialized:", provider);
