@@ -30,7 +30,8 @@ body {
 #contact input[type="url"],
 #contact textarea,
 #contact button[type="submit"] {
-  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  height: 45px;
 }
 
 #contact {
@@ -137,3 +138,300 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
+
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      z-index: 50;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .modal-overlay.visible {
+      opacity: 1;
+    }
+
+    /* Modal Container */
+    .modal {
+      background-color: var(--modal-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;  /* Slightly smaller radius */
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 28rem;
+      max-height: 88vh; /* A bit shorter for extra space on mobile */
+      overflow-y: auto;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    .modal.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Sticky Modal Header */
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: rgba(45, 50, 56, 0.3);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+    }
+    .modal-title {
+      font-size: 1rem; /* Slightly smaller */
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-primary);
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      padding: 0.3rem;
+      border-radius: 0.3rem;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover {
+      background-color: var(--hover-bg);
+      color: var(--text-primary);
+    }
+
+    /* Modal Body */
+    .modal-body {
+      padding: 0.75rem 1rem;
+    }
+    .modal-description {
+      font-size: 0.825rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Agreement Items */
+    .agreement-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; /* Reduced gap */
+    }
+    .agreement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.65rem;
+      background-color: rgba(45, 50, 56, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 0.4rem;
+      transition: background-color 0.2s ease;
+    }
+    .agreement-item:hover {
+      background-color: var(--hover-bg);
+    }
+    .agreement-item.checked {
+      background-color: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.2);
+    }
+    .agreement-checkbox {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.25rem;
+      border: 2px solid var(--border-color);
+      background-color: var(--input-bg);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .agreement-checkbox:checked {
+      background-color: var(--color-green);
+      border-color: var(--color-green);
+    }
+    .agreement-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .agreement-text {
+      display: block;
+      font-size: 0.825rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .agreement-icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.4rem;
+      vertical-align: text-bottom;
+      color: var(--color-primary);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+    .tooltip-trigger {
+      background: none;
+      border: none;
+      color: var(--color-primary);
+      font-size: 0.7rem;
+      cursor: pointer;
+      padding: 0.25rem 0.4rem;
+      border-radius: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      transition: background-color 0.2s ease;
+    }
+    .tooltip-trigger:hover {
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+    .tooltip-content {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--modal-bg);
+      color: var(--text-primary);
+      padding: 0.5rem;
+      border-radius: 0.4rem;
+      font-size: 0.7rem;
+      width: 180px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      z-index: 2;
+    }
+    .tooltip:hover .tooltip-content {
+      opacity: 1;
+      visibility: visible;
+    }
+    @media (max-width: 640px) {
+      /* If you want tooltips to appear at the bottom on small screens */
+      .tooltip-content {
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        transform: none;
+      }
+    }
+
+    /* Sticky Modal Footer */
+    .modal-footer {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      background-color: rgba(45, 50, 56, 0.3);
+      border-top: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+    }
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .progress-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    .progress-bar {
+      width: 100%;
+      height: 0.25rem;
+      background-color: var(--border-color);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+    .progress-value {
+      height: 100%;
+      background-color: var(--color-primary);
+      transition: width 0.2s ease-in-out;
+    }
+
+    /* Button Container & Buttons */
+    .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    @media (max-width: 640px) {
+      .button-container {
+        flex-direction: column-reverse;
+      }
+    }
+    .button {
+      padding: 0.5rem 0.85rem;
+      border-radius: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .button-outline {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+    .button-outline:hover {
+      background-color: var(--hover-bg);
+    }
+    .button-primary {
+      background-color: var(--color-green);
+      color: #ffffff;
+    }
+    .button-primary:hover {
+      background-color: #16a34a;
+    }
+    .button-primary:disabled {
+      background-color: var(--border-color);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Custom Scrollbar */
+    .modal::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    .modal::-webkit-scrollbar-track {
+      background: var(--modal-bg);
+    }
+    .modal::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 9999px;
+    }
+    .modal::-webkit-scrollbar-thumb:hover {
+      background: var(--hover-bg);
+    }
