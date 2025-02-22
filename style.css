@@ -528,6 +528,17 @@ fieldset {
         padding-left: 1rem;
       }
     }
+
+    /* Desktop模式調整 */
+    @media (min-width: 769px) {
+      details > *:not(summary) {
+          display: block !important; /* 強制展開內容 */
+      }
+  
+      details summary {
+          pointer-events: none; /* 禁止點擊 */
+      }
+    }
     
     .footer-bottom p {
       font-size: 22px;
